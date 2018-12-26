@@ -1,0 +1,49 @@
+<head>
+<style>
+  h1{
+    font-size: 20pt;
+    margin-top: 0;
+  }
+  pre{
+    font-size: 16pt;
+    margin-left: 20px;
+  }
+  .vk_auth{
+  position: absolute;
+  text-align: right;
+  margin-right
+  }
+</style>
+<script src="https://vk.com/js/api/openapi.js?160" type="text/javascript"></script>
+</head>
+<body>
+<h1>Вход</h1>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <pre class="field"><%= f.label :Email %>     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </pre>
+
+  <pre class="field"><%= f.label :Пароль %>    <%= f.password_field :password, autocomplete: "current-password" %>
+  </pre>
+
+  <% if devise_mapping.rememberable? -%>
+    <p class="field"><%= f.check_box :remember_me %>    <%= f.label :Запомнить %>
+    </p>
+  <% end -%>
+
+  <p class="actions">
+    <%= f.submit "Войти" %>
+  </p>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+<div id="vk_auth"></div>
+<script type="text/javascript">
+window.onload = function () {
+ VK.init({apiId: 6796718});
+ VK.Widgets.Auth('vk_auth', {});
+}
+</script>
+
+</body>

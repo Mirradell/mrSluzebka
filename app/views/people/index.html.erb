@@ -1,0 +1,18 @@
+<%= link_to image_tag('new_person.png', size: "500x60", alt:'Добавить нового'), new_person_path %>
+
+<table style="font-size: 22px" cellpadding="30px">
+  <% @people.each do |person| %>
+    <% if person.id_head == current_user.email %>
+    <tr>
+      <td style="width: 23%; text-align: left"><%= person.surname %></td>
+      <td style="width: 23%; text-align: left"><%= person.name %></td>
+      <td style="width: 23%; text-align: left"><%= person.ssilka %></td>
+      <td><%= link_to 'Подробнее', person_path(person) %></td>
+      <td><%= link_to 'Редактировать', edit_person_path(person) %></td>
+      <td><%= link_to 'Удалить', person_path(person),
+          method: :delete,
+          data: { confirm: 'Вы уверены?' } %></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>

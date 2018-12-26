@@ -1,0 +1,5 @@
+<%= form_with(model: @person, local: true) do |form| %>
+  <pre>Введите ссылку на участника Вконтакте*:       <%= form.text_field :ssilka %> </pre>
+  <%= link_to 'Отмена', people_path %>
+  <%= form.submit ( form.object.new_record? ? "Упс, что-то пошло не так..." : "Сохранить изменения"), class: "btn" %>      
+<% end %>

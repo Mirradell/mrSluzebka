@@ -1,0 +1,17 @@
+<%= link_to image_tag('add_new.jpg', size: "500x60", alt: "Добавить новое мероприятие"), new_event_path %>
+
+<table style="font-size: 22px" cellpadding="30px">
+  <% @events.each do |event| %>
+    <% if (event.id_head == current_user.email) %>
+    <tr>
+      <td style="width: 70%; text-align: left"><%= event.title %></td>
+      <td><%= link_to 'Подробнее', event_path(event) %></td>
+      <td><%= link_to 'Редактировать', edit_event_path(event) %></td>
+      <td><%= link_to 'Скачать', edit_event_path(event) %></td>
+      <td><%= link_to 'Удалить', event_path(event),
+          method: :delete,
+          data: { confirm: 'Вы уверены?' } %></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>

@@ -1,0 +1,69 @@
+<style>
+  p{
+    font-size: 20px;
+  }
+  pre{
+    font-size: 16pt;
+  }
+</style>
+<p>   
+  <strong>Название:</strong>
+  <%= @event.title %>
+</p>
+<p>
+  <strong>Уровень:</strong>
+  <%= case @event.level
+                when 0
+                  'Международный'
+                when 1
+                  'Всероссийский'
+                when 2
+                  'Окружной'
+                when 3
+                  'Областной'
+                when 4
+                  'Муниципальный'
+                when 5
+                  'Университетский'
+                when 6
+                  'Межфакультетский'
+                when 7
+                  'Структурное подразделение'
+                else
+                  'Неизвестный уровень! Пожалуйста, отредактируйте мероприятие!'
+              end
+          %>
+        </p>
+        <p>
+          <strong>Дата:</strong>
+          <%= @event.ev_date %>
+        </p>
+        <p>
+          <strong>Место(при наличии):</strong>
+          <%= case @event.place
+                when 0
+                  'Гран-при'
+                when 1
+                  '1-ое место'
+                when 2
+                  '2-ое место'
+                when 3
+                  '3-е место'
+                when 4
+                  'Победа в отдельной номинации(спецприз)'
+                when 5
+                  'Лауреат'
+                when 6
+                 'Участие'
+                when 7
+                 'Без места'
+                else
+                  'Неизвестное место! Пожалуйста, отредактируйте мероприятие!'
+                end
+          %>
+        </p>
+        <pre><%= link_to 'Редактировать', edit_event_path(@event) %>   <%= link_to 'Скачать', 
+              edit_event_path(@event) %>   <%= link_to 'Удалить', event_path(@event),
+              method: :delete,
+              data: { confirm: 'Вы уверены?' } %>
+        </pre>

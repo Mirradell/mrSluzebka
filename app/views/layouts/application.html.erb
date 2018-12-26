@@ -1,0 +1,40 @@
+  <head>
+      <title>MrSluzebka</title>    
+      <%= csrf_meta_tags %>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <style>
+      body{
+          font-family: Slab serif;
+          font-size: 22 pt;
+          background: #e4e8f9;
+        }
+      div{
+        text-align: left;
+        background: #fff;
+        margin: 10px 40px 0 40px;
+        padding: 20px;
+      }
+      .pp{
+        text-align: right;
+        position: relative;
+        margin-top: 0;
+        margin-right: 40px;
+      }
+      </style>
+    </head>
+    <body>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= image_tag('001.jpg', size: "700x200", alt: "Mr Служебка") %> <!-- красивая картинка        -->
+      
+      <p class="pp">
+        <%= link_to image_tag('events.png', size: "200x35", alt: "Go to events"), events_path%>
+        <%= link_to image_tag('people.png', size: "200x35", alt: "Co to people"), people_path%>
+        <%= link_to image_tag('help.png', size: "200x35", alt: "Go to help"), new_event_path%>
+        <%= link_to image_tag('exit.png', size: "200x35", alt: "exit"), destroy_user_session_path, method: :delete%>
+      </p>
+      <div id="wrapper">
+        <%= yield %>
+      </div>
+  </body>

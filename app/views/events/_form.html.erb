@@ -1,0 +1,52 @@
+<%= form_with(model: @event, local: true) do |form| %>
+<style>
+  p{
+  font-size: 20pt;
+  font-family: Slab serif;
+  text-align: left;
+  }
+</style>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@event.errors.count, "error") %> prohibited
+        this event from being saved:
+      </h2>
+      <ul>
+        <% @event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <table cellpadding="20" >
+  <tr>
+    <td><p>Название*:</p></td>
+    <td><%= form.text_field :title %></td>
+  </tr>
+  <tr>
+    <td><p>Уровень*:</p></td>
+    <td><%= select(:event, :level, options_for_select([['Международный', 0], ['Всероссийский', 1], ['Окружной', 2],
+      ['Областной', 3], ['Муниципальный', 4], ['Университетский', 5], ['Межфакультетский', 6], 
+      ['Структурное подразделение', 7]])) %></td>
+  </tr>
+  <tr>
+    <td><p>Дата мероприятия*:</p></td>
+    <td><%= date_select :event, :ev_date %></td>
+  </tr>
+  <tr>
+    <td><p>Занятое место:</p></td>
+    <td><%= select(:event, :place, options_for_select([['Без места', 7], ['Гран-при', 0], ['1-ое место', 1], ['2-ое место', 2], 
+      ['3-е место', 3], ['Победа в отдельной номинации(спецприз)', 4], ['Лауреат', 5], ['Участие', 6]])) %></td>
+  </tr>
+  
+  <%= form.hidden_field :id_head, value: current_user.email %>
+  </table>
+  
+  <p style="margin-left: 20px">Поля, помеченные '*' обязательны к заполнению!</p>
+  <div style="font-size: 16pt; margin-left: 20px; padding-right: 30px">
+  <%= link_to 'Отмена', events_path %>
+  <%= form.submit ( form.object.new_record? ? "Создать мероприятие" : "Сохранить изменения"), class: "btn" %>
+  </div>
+<% end %>
